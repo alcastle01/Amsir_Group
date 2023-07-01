@@ -10,8 +10,12 @@
 
 ## Estructura
 
+ - `diagrams`: diagramas relevantes para el proyecto (se pueden abrir con www.drawio.com)
  - `public`: items publicos, disponibles para el cliente
  - `src`: base de codigo
+    - `components`: componentes funcionales (en su mayoria) reusables en al aplicacion
+    - `pages`: paginas publicas para construir con components
+    - `static`: recursos estaticos como imagenes o iconos
 
 
 
