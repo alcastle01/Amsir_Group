@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
 import './ResponsiveAppBar.css';
-import amsirLogo from './../../static/amsirLogo.png';
+import amsirLogo from './../../static/amsirLogoNoBg.png';
 
 const pages = ['Welcome', 'Demo', 'About us'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
