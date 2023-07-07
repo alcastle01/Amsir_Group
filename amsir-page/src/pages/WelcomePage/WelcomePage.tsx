@@ -2,6 +2,10 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
+import { Box, List, ListItem, ListItemButton } from '@mui/material';
+
+const courses = ["Curso 1", "Curso 2", "Curso 3"]
+const allies = ["Pepito 1", "Pepito 2", "Pepito 3"]
 
 function WelcomePage() {
 	return (
@@ -46,23 +50,32 @@ function WelcomePage() {
 				<Typography variant='h2'>
 					Main courses
 				</Typography>
-				<ul>
-					<li>
-						<p>Curso 1</p>
-					</li>
-					<li>
-						<p>Curso 2</p>
-					</li>
-					<li>
-						<p>Curso 3</p>
-					</li>
-					<li>
-						<p>Curso 4</p>
-					</li>
-					<li>
-						<p>Curso 5</p>
-					</li>
-				</ul>
+				<Grid container>
+					<Grid container item xs={6} md={4} direction='column'>
+						<List>
+							{courses.map((course) => {
+								return <>
+									<Divider variant='middle' />
+									<ListItem>
+										<ListItemButton>
+											<Typography variant='overline'>
+												{course}
+											</Typography>
+										</ListItemButton>
+									</ListItem>
+									<Divider variant='middle' />
+								</>
+							})}
+						</List>
+					</Grid>
+					<Grid container item xs={6} md={8}>
+						<Box alignSelf='center' margin='0.1em' width='90%' height='90%' border={'dotted 2.5px'}>
+							<Typography padding='1em' variant='body2'>
+								dynamic description
+							</Typography>
+						</Box>
+					</Grid>
+				</Grid>
 			</div>
 			<Divider orientation='horizontal' variant='middle' />
 			<div>
@@ -74,34 +87,17 @@ function WelcomePage() {
 				<Grid container spacing={2} direction='row' justifyContent='center' sx={{
 					'margin': '10px'
 				}} >
-					<Grid item xs={2}>
-						<Typography sx={{
-							'border': '3px solid #A084DC'
-						}} >
-							Pepito1
-						</Typography>
-					</Grid>
-					<Grid item xs={2}>
-						<Typography sx={{
-							'border': '3px solid #A084DC'
-						}} >
-							Pepito1
-						</Typography>
-					</Grid>
-					<Grid item xs={2}>
-						<Typography sx={{
-							'border': '3px solid #A084DC'
-						}} >
-							Pepito1
-						</Typography>
-					</Grid>
-					<Grid item xs={2}>
-						<Typography sx={{
-							'border': '3px solid #A084DC'
-						}} >
-							Pepito1
-						</Typography>
-					</Grid>
+					{allies.map((ally) => {
+						return <>
+							<Grid item xs={2}>
+								<Typography sx={{
+									'border': '3px solid #A084DC'
+								}} >
+									{ally}
+								</Typography>
+							</Grid>
+						</>
+					})}
 				</Grid>
 			</div>
 			<Divider orientation='horizontal' variant='fullWidth' />
