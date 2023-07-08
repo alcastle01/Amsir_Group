@@ -1,0 +1,52 @@
+<mxfile host="app.diagrams.net" modified="2023-07-04T03:46:22.442Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/114.0" etag="UUhJiczQg4k6re3dXf9n" version="21.5.2" type="device">
+  <diagram name="Welcome page" id="mlZBsronfns_71ekg3SB">
+    <mxGraphModel dx="1050" dy="578" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="r6RAmpJQUaLCTV7_jIbi-9" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="80" y="7.5" width="450" height="52.5" as="geometry" />
+        </mxCell>
+        <mxCell id="r6RAmpJQUaLCTV7_jIbi-2" value="Millton Sancheez" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="252.5" y="80" width="105" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="r6RAmpJQUaLCTV7_jIbi-1" value="" style="whiteSpace=wrap;html=1;aspect=fixed;imageAspect=1;resizeHeight=0;expand=1;" parent="1" vertex="1">
+          <mxGeometry x="80" y="60" width="450" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="r6RAmpJQUaLCTV7_jIbi-4" value="Logo" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="90" y="14.25" width="39" height="39" as="geometry" />
+        </mxCell>
+        <mxCell id="r6RAmpJQUaLCTV7_jIbi-11" value="AMSIR" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="137" y="18.75" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="r6RAmpJQUaLCTV7_jIbi-13" value="Welcome" style="rounded=1;fillColor=#F1F2F4;strokeColor=none;html=1;whiteSpace=wrap;fontColor=#596780;align=center;verticalAlign=middle;fontStyle=0;fontSize=12;sketch=0;" parent="1" vertex="1">
+          <mxGeometry x="179" y="17" width="60" height="33" as="geometry" />
+        </mxCell>
+        <mxCell id="r6RAmpJQUaLCTV7_jIbi-14" value="About us" style="rounded=1;fillColor=#F1F2F4;strokeColor=none;html=1;whiteSpace=wrap;fontColor=#596780;align=center;verticalAlign=middle;fontStyle=0;fontSize=12;sketch=0;" parent="1" vertex="1">
+          <mxGeometry x="292" y="17.25" width="57" height="33" as="geometry" />
+        </mxCell>
+        <mxCell id="r6RAmpJQUaLCTV7_jIbi-15" value="Demo" style="rounded=1;fillColor=#F1F2F4;strokeColor=none;html=1;whiteSpace=wrap;fontColor=#596780;align=center;verticalAlign=middle;fontStyle=0;fontSize=12;sketch=0;" parent="1" vertex="1">
+          <mxGeometry x="241.5" y="17.25" width="47.5" height="33" as="geometry" />
+        </mxCell>
+        <mxCell id="r6RAmpJQUaLCTV7_jIbi-21" value="What is Amsir?&lt;br&gt;Join us now!!" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=12 12;" parent="1" vertex="1">
+          <mxGeometry x="90" y="70" width="430" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="r6RAmpJQUaLCTV7_jIbi-22" value="Main courses" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=12 12;" parent="1" vertex="1">
+          <mxGeometry x="90" y="170" width="430" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="r6RAmpJQUaLCTV7_jIbi-23" value="Profile" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="481" y="14.25" width="39" height="39" as="geometry" />
+        </mxCell>
+        <mxCell id="tm3M8UsWbnQel0r7BNJg-1" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/general/Information.svg;" vertex="1" parent="1">
+          <mxGeometry x="506" y="39.25" width="14" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="tm3M8UsWbnQel0r7BNJg-2" value="Alianzas" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=12 12;" vertex="1" parent="1">
+          <mxGeometry x="90" y="389" width="430" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="tm3M8UsWbnQel0r7BNJg-3" value="&lt;div style=&quot;font-size: 10px;&quot;&gt;Copyright&lt;br style=&quot;font-size: 10px;&quot;&gt;Contact&lt;br style=&quot;font-size: 10px;&quot;&gt;Social Networks&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="80" y="510" width="450" height="52.5" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
