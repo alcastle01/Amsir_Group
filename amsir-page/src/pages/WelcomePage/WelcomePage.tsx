@@ -4,8 +4,32 @@ import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
 import { Box, List, ListItem, ListItemButton } from '@mui/material';
 
+import InstagramIcon from '@mui/icons-material/Instagram';
+
+import logoIEEE from './../../static/logo-ieee-white.svg';
+import logoSurvivalMed from './../../static/survival-med-logo.png';
+import logoSumaeUnam from './../../static/SUMAe-UNAM.jpg';
+
+class Ally {
+	name: string;
+	logoImg: any;
+	url: string;
+
+	constructor(name:string, logoImg: any, url: string) {
+		this.name = name;
+		this.logoImg = logoImg;
+		this.url = url;
+	}
+}
+
+const IEEE = new Ally("IEEE", logoIEEE, "https://edu.ieee.org/co-unemb/rama-estudiantil-ieee/");
+const SUR_MED = new Ally("Survival Med", logoSurvivalMed, "https://survivalmedonline.org/courses/wfa-16-hr/?gad=1&gclid=Cj0KCQjw756lBhDMARIsAEI0AgludooHx2qbYK1v0nX4kOd91ZJVYl-p4Zs39SbPG-ButSR63z13de4aAtiYEALw_wcB");
+const SUMAE_UNAM = new Ally("SUMAe-UNAM", logoSumaeUnam, "https://sites.google.com/view/sumae-unam/p%C3%A1gina-principal");
+const PYASMA = new Ally("PYASMA", InstagramIcon, "https://www.instagram.com/pyasmassociation/");
+const CYDONIA = new Ally("CYDONIA", InstagramIcon, "https://www.instagram.com/fundcydonia/");
+
 const courses = ["Curso 1", "Curso 2", "Curso 3"]
-const allies = ["Pepito 1", "Pepito 2", "Pepito 3"]
+const allies = [IEEE, SUR_MED, SUMAE_UNAM, PYASMA, CYDONIA]
 
 function WelcomePage() {
 	return (
@@ -36,9 +60,9 @@ function WelcomePage() {
 					'background-color': '#A084DC',
 					'margin': '0.5em',
 					':hover': {
-      					'background-color': '#645CBB',
-      					'color': 'white',
-    				},
+      						'background-color': '#645CBB',
+      						'color': 'white',
+    					},
 				}} variant='contained' size='large' >
 						Join us now!!
 				</Button>
@@ -91,9 +115,18 @@ function WelcomePage() {
 						return <>
 							<Grid item xs={2}>
 								<Typography sx={{
-									'border': '3px solid #A084DC'
+									'background-color': '#A084DC',
+									'padding': '0.5em',
+									'max-width': '50%',
+									'border-radius': '10%',
+									':hover': {
+										'background-color': '#645CBB',
+										'color': 'white',
+								      	}
 								}} >
-									{ally}
+									<a href={ally.url}>
+										<img src={ally.logoImg} alt={ally.name} />
+									</a>
 								</Typography>
 							</Grid>
 						</>
