@@ -100,7 +100,7 @@ function WelcomePage() {
 				<Typography variant='h2'>
 					Main courses
 				</Typography>
-				<Carousel fullHeightHover={false} navButtonsAlwaysVisible={true} autoPlay={false} >
+				<Carousel height={480} fullHeightHover={false} navButtonsAlwaysVisible={true} autoPlay={false} >
 					{
 						carouselItems.map((item, i) => <CarouselItem key={i} itemObject={item} />)
 					}
