@@ -2,9 +2,11 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
-import { Avatar, Box, Card, CardContent, CardHeader, List, ListItem, ListItemButton, Stack } from '@mui/material';
+import { Box, List, ListItem, ListItemButton, Stack } from '@mui/material';
 
 import InstagramIcon from '@mui/icons-material/Instagram';
+
+import TeacherCard from './../../components/TeacherCard/TeacherCard';
 
 import logoIEEE from './../../static/logo-ieee-white.svg';
 import logoSurvivalMed from './../../static/survival-med-logo.png';
@@ -13,7 +15,7 @@ import sample1 from './../../static/sample-1.jpg';
 import sample2 from './../../static/sample-2.jpg';
 import sample3 from './../../static/sample-3.jpg';
 
-import { JSXElementConstructor, ReactElement, ReactFragment, ReactPortal, useState } from 'react';
+import { useState } from 'react';
 
 class Ally {
 	name: string;
@@ -38,25 +40,6 @@ const coursesImgs = [sample1, sample2, sample3];
 const allies = [IEEE, SUR_MED, SUMAE_UNAM, PYASMA, CYDONIA];
 
 const teachers = ["pablo", "juan", "katherine"];
-
-function TeacherCard(props: { teacher: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; }) {
-	return <>
-		<Box height='240px' width='240px' >
-			<Card sx={{ margin: '10px' }}>
-				<CardHeader 
-					avatar={<Avatar sx={{ bgcolor: 'violet' }}> U </Avatar>} 
-					title={props.teacher} 
-					subheader='current course' 
-				/>
-				<CardContent>
-					<Typography variant='body2'>
-						Hello from our teacher!
-					</Typography>
-				</CardContent>
-			</Card>
-		</Box>
-	</>
-}
 
 function WelcomePage() {
 
@@ -132,7 +115,7 @@ function WelcomePage() {
 			<Divider orientation='horizontal' variant='middle' />
 			<div>
 				{/*Teachers/Instructors*/}
-				<Grid container direction='row' justifySelf='center' justifyContent='center' alignItems='center'>
+				<Grid spacing={2} container direction='row' justifySelf='center' justifyContent='center' alignItems='center'>
 					{teachers.map((teacher) => {
 						return <>
 							<Grid item>
