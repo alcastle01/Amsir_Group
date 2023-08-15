@@ -6,7 +6,6 @@ import Stack from '@mui/material/Stack';
 
 import InstagramIcon from '@mui/icons-material/Instagram';
 
-import TeacherCard from './../../components/TeacherCard/TeacherCard';
 import Carousel from 'react-material-ui-carousel';
 
 import logoIEEE from './../../static/logo-ieee-white.svg';
@@ -16,8 +15,10 @@ import sample1 from './../../static/sample-1.jpg';
 import sample2 from './../../static/sample-2.jpg';
 import sample3 from './../../static/sample-3.jpg';
 
-import ItemObject from '../../components/MUICarousel/ItemObject';
 import CarouselItem from '../../components/MUICarousel/CarouselItem';
+import TeacherCard from './../../components/TeacherCard/TeacherCard';
+import ItemObject from '../../components/MUICarousel/ItemObject';
+import Teacher from '../../components/TeacherCard/Teacher';
 
 class Ally {
 	name: string;
@@ -39,7 +40,25 @@ const CYDONIA = new Ally("CYDONIA", null, "https://www.instagram.com/fundcydonia
 
 const allies = [IEEE, SUR_MED, SUMAE_UNAM, PYASMA, CYDONIA];
 
-const teachers = ["pablo", "juan", "katherine"];
+const teachers: Teacher[] = [
+	{
+		name: "Pablo",
+		course: "Anatomy",
+		bio: "Pablo is a biologist", 
+		img: ""
+	},
+	{
+		name: "Juan", 
+		course: "Vaccination 101",
+		bio: "Juan is a physician", 
+		img: ""
+	},
+	{
+		name: "Katherine",
+		course: "Bone structures 101",
+		bio: "Katherine is a chiropractor", 
+		img: ""
+	},];
 
 const carouselItems: ItemObject[] = [
 	{
