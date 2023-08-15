@@ -2,11 +2,12 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
-import { Box, List, ListItem, ListItemButton, Stack } from '@mui/material';
+import Stack from '@mui/material/Stack';
 
 import InstagramIcon from '@mui/icons-material/Instagram';
 
 import TeacherCard from './../../components/TeacherCard/TeacherCard';
+import Carousel from 'react-material-ui-carousel';
 
 import logoIEEE from './../../static/logo-ieee-white.svg';
 import logoSurvivalMed from './../../static/survival-med-logo.png';
@@ -15,7 +16,8 @@ import sample1 from './../../static/sample-1.jpg';
 import sample2 from './../../static/sample-2.jpg';
 import sample3 from './../../static/sample-3.jpg';
 
-import { useState } from 'react';
+import ItemObject from '../../components/MUICarousel/ItemObject';
+import CarouselItem from '../../components/MUICarousel/CarouselItem';
 
 class Ally {
 	name: string;
@@ -35,15 +37,29 @@ const SUMAE_UNAM = new Ally("SUMAe-UNAM", logoSumaeUnam, "https://sites.google.c
 const PYASMA = new Ally("PYASMA", null, "https://www.instagram.com/pyasmassociation/");
 const CYDONIA = new Ally("CYDONIA", null, "https://www.instagram.com/fundcydonia/");
 
-const courses = ["Curso 1", "Curso 2", "Curso 3"];
-const coursesImgs = [sample1, sample2, sample3];
 const allies = [IEEE, SUR_MED, SUMAE_UNAM, PYASMA, CYDONIA];
 
 const teachers = ["pablo", "juan", "katherine"];
 
-function WelcomePage() {
+const carouselItems: ItemObject[] = [
+	{
+		name: 'First Item',
+		description: "I'm the first item!",
+		img: sample1,
+	},
+	{
+		name: 'Second Item',
+		description: "I'm the 2nd item!",
+		img: sample2,
+	},
+	{
+		name: 'Third Item',
+		description: "I'm the 3rd item!",
+		img: sample3,
+	},
+];
 
-	const [index, setIndex] = useState(0);
+function WelcomePage() {
 
 	return (
 		<div>
@@ -87,30 +103,11 @@ function WelcomePage() {
 				<Typography variant='h2'>
 					Main courses
 				</Typography>
-				<Grid container>
-					<Grid container item xs={6} md={4} direction='column'>
-						<List>
-							{courses.map((course) => {
-								return <>
-									<Divider variant='middle' />
-									<ListItem>
-										<ListItemButton>
-											<Typography onClick={() => {setIndex(courses.indexOf(course))}} variant='overline'>
-												{course}
-											</Typography>
-										</ListItemButton>
-									</ListItem>
-									<Divider variant='middle' />
-								</>
-							})}
-						</List>
-					</Grid>
-					<Grid container item xs={6} md={8}>
-						<Box alignSelf='center' margin='0.1em' width='90%' height='90%' border={'dotted 2.5px'}>
-							<img key={index} src={coursesImgs[index]} alt='courseImg' />
-						</Box>
-					</Grid>
-				</Grid>
+				<Carousel height={480} fullHeightHover={false} navButtonsAlwaysVisible={true} autoPlay={false} >
+					{
+						carouselItems.map((item, i) => <CarouselItem key={i} itemObject={item} />)
+					}
+				</Carousel>
 			</div>
 			<Divider orientation='horizontal' variant='middle' />
 			<div>
