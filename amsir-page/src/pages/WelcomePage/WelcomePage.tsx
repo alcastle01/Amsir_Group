@@ -17,6 +17,9 @@ import sample3 from './../../static/sample-3.jpg';
 
 import ItemObject from '../../components/MUICarousel/ItemObject';
 import CarouselItem from '../../components/MUICarousel/CarouselItem';
+import UserReviewItem from '../../components/UserReviewCard/UserReviewItem';
+import Box from '@mui/material/Box';
+import UserReviewCard from '../../components/UserReviewCard/UserReviewCard';
 
 class Ally {
 	name: string;
@@ -37,6 +40,19 @@ const PYASMA = new Ally("PYASMA", null, "https://www.instagram.com/pyasmassociat
 const CYDONIA = new Ally("CYDONIA", null, "https://www.instagram.com/fundcydonia/");
 
 const allies = [IEEE, SUR_MED, SUMAE_UNAM, PYASMA, CYDONIA];
+
+const userReviews: UserReviewItem[] = [
+	{
+		username: undefined,
+		rating: 5,
+		note: undefined,
+	},
+	{
+		username: "Jose",
+		rating: 3.5,
+		note: "I did not like the syllabus",
+	},
+];
 
 const carouselItems: ItemObject[] = [
 	{
@@ -141,6 +157,34 @@ function WelcomePage() {
 							</Grid>
 						</>
 					})}
+				</Grid>
+			</div>
+			<Divider orientation='horizontal' variant='fullWidth' />
+			{/*User reviews*/}
+			<div>
+				<br />
+				<Grid alignContent='center' alignItems='center' spacing={2} container direction='column'>
+					<Grid item>
+						<Typography variant='h4'>
+							Nuestros usuarios dicen...
+						</Typography>
+					</Grid>
+					<Grid item>
+						<Box minWidth={275} minHeight={275} alignItems='center'>
+							<Carousel sx={{
+								maxWidth: 275,
+								margin: '10px',
+							}} indicators={false} autoPlay={true} >
+								{
+										userReviews.map((item, i) => {
+											return(<>
+												<UserReviewCard item={item} key={i} />
+											</>)
+										})
+								}
+							</Carousel>
+						</Box>
+					</Grid>
 				</Grid>
 			</div>
 			<Divider orientation='horizontal' variant='fullWidth' />
