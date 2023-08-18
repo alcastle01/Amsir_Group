@@ -52,44 +52,44 @@ const userReviews: UserReviewItem[] = [
 	{
 		username: "Jose",
 		rating: 3.5,
-		note: "I did not like the syllabus",
+		note: "No me gusto el syllabus",
 	},
 ];
 
 const teachers: Teacher[] = [
 	{
 		name: "Pablo",
-		course: "Anatomy",
-		bio: "Pablo is a biologist", 
+		course: "Anatomía",
+		bio: "Pablo es biologo", 
 		img: ""
 	},
 	{
 		name: "Juan", 
-		course: "Vaccination 101",
-		bio: "Juan is a physician", 
+		course: "Vacunación",
+		bio: "Juan es médico general", 
 		img: ""
 	},
 	{
 		name: "Katherine",
-		course: "Bone structures 101",
-		bio: "Katherine is a chiropractor", 
+		course: "Estructuras óseas",
+		bio: "Katherine es quiropráctica", 
 		img: ""
 	},];
 
 const carouselItems: ItemObject[] = [
 	{
-		name: 'First Item',
-		description: "I'm the first item!",
+		name: 'Primer item',
+		description: "Soy el primer item!",
 		img: sample1,
 	},
 	{
-		name: 'Second Item',
-		description: "I'm the 2nd item!",
+		name: 'Segundo item',
+		description: "Soy el segundo item!",
 		img: sample2,
 	},
 	{
-		name: 'Third Item',
-		description: "I'm the 3rd item!",
+		name: 'Tercer Item',
+		description: "Soy el tercer item!",
 		img: sample3,
 	},
 ];
@@ -102,24 +102,25 @@ function WelcomePage() {
 			<br />
 			<br />
 			<div>
-		  		{/*What is amsir? Join us now!*/}
-				<Typography variant='h2'>
-					What is AMSIR?
+		  		{/*Que es AMSIR*/}
+				<Typography variant='h3' sx={{ color: '#A084DC' }}>
+					¿Qué es AMSIR?
 				</Typography>
+				<br />
 				<Typography sx={{
 					marginLeft: '10%',
 					marginRight: '10%',
 					paddingLeft: '1.5em',
 					paddingRight: '1.5em',
-					border: '5px solid #A084DC',
-					borderRadius: '10%',
+					border: '2px solid #A084DC',
+					borderRadius: '10px',
 					':hover': {
-						'background-color': '#fce6f9'
+						'background-color': '#fce6f9',
 					}
-				}} variant='body1' align='justify'>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus sed purus sed suscipit. Suspendisse sit amet lacinia risus, non ullamcorper justo. Proin ut lacus erat. Nam porta mattis auctor. Mauris et elit urna. Integer rhoncus metus ac congue suscipit. Cras ornare urna a sodales hendrerit. Ut commodo tellus metus, ultrices efficitur nunc elementum a. Nulla eros enim, elementum nec massa et, porta dignissim dolor. Praesent finibus nisi vitae tortor vestibulum aliquam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Morbi ut odio sit amet metus sollicitudin condimentum non non magna. Pellentesque ut lacus dolor. Vivamus fermentum, urna vitae tempor pharetra, lectus magna ultricies arcu, ac aliquet erat purus eu mi.
+				}} variant='body1' align='center'>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus sed purus sed suscipit.
 				</Typography>
-				<br/>
+				<br />
 				<Button sx={{
 					backgroundColor: '#A084DC',
 					margin: '0.5em',
@@ -128,15 +129,17 @@ function WelcomePage() {
       						'color': 'white',
     					},
 				}} variant='contained' size='large' >
-						Join us now!!
+						¡Únete ahora!
 				</Button>
-				<br/>
+				<br />
+				<br />
 			</div>
 			<Divider orientation='horizontal' variant='middle' />
 			<div>
-		 		{/*Main courses*/}
-				<Typography variant='h2'>
-					Main courses
+		 		{/*Cursos Principales*/}
+				<br />
+				<Typography variant='h4' sx={{ color: '#A084DC' }}>
+					Cursos Principales
 				</Typography>
 				<Carousel height={480} fullHeightHover={false} navButtonsAlwaysVisible={true} autoPlay={false} >
 					{
@@ -146,7 +149,8 @@ function WelcomePage() {
 			</div>
 			<Divider orientation='horizontal' variant='middle' />
 			<div>
-				{/*Teachers/Instructors*/}
+				{/*Instructores*/}
+				<br />
 				<Grid spacing={2} container direction='row' justifySelf='center' justifyContent='center' alignItems='center'>
 					{teachers.map((teacher) => {
 						return <>
@@ -159,11 +163,12 @@ function WelcomePage() {
 			</div>
 			<Divider orientation='horizontal' variant='middle' />
 			<div>
-		  		{/*Allies*/}
-				<Typography variant='h3'>
-					Our Allies
+		  		{/*Aliados*/}
+				<br />
+				<Typography variant='h4' sx={{ color: '#A084DC' }}>
+					Nuestros Aliados
 				</Typography>
-				<br/>
+				<br />
 				<Grid container spacing={2} direction='row' justifyContent='center' sx={{
 					'margin': '10px'
 				}} >

@@ -17,7 +17,7 @@ function CarouselItem(props: { itemObject: { img: any; name: string | number | b
                     <br />
 
                         <Button className="CheckButton">
-                            Check it out!
+                            ¡Más info aquí!
                         </Button>
                 </Grid>
                 <Grid item xs={6}>
