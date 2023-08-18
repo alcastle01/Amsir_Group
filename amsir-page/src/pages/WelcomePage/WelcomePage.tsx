@@ -180,7 +180,7 @@ function WelcomePage() {
 										'color': 'white',
 								      	}
 								}} >
-									<a href={ally.url}>
+									<a href={ally.url} target='_blank' rel='noreferrer'>
 										{ally.logoImg ?
 											<img src={ally.logoImg} alt={ally.name} />
 											: <Stack alignItems='center' spacing={2}>
@@ -200,7 +200,7 @@ function WelcomePage() {
 				<br />
 				<Grid alignContent='center' alignItems='center' spacing={2} container direction='column'>
 					<Grid item>
-						<Typography variant='h4'>
+						<Typography variant='h4' sx={{ color: '#A084DC' }}>
 							Nuestros usuarios dicen...
 						</Typography>
 					</Grid>
