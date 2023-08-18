@@ -15,8 +15,10 @@ import sample1 from './../../static/sample-1.jpg';
 import sample2 from './../../static/sample-2.jpg';
 import sample3 from './../../static/sample-3.jpg';
 
-import ItemObject from '../../components/MUICarousel/ItemObject';
 import CarouselItem from '../../components/MUICarousel/CarouselItem';
+import TeacherCard from './../../components/TeacherCard/TeacherCard';
+import ItemObject from '../../components/MUICarousel/ItemObject';
+import Teacher from '../../components/TeacherCard/Teacher';
 
 class Ally {
 	name: string;
@@ -37,6 +39,26 @@ const PYASMA = new Ally("PYASMA", null, "https://www.instagram.com/pyasmassociat
 const CYDONIA = new Ally("CYDONIA", null, "https://www.instagram.com/fundcydonia/");
 
 const allies = [IEEE, SUR_MED, SUMAE_UNAM, PYASMA, CYDONIA];
+
+const teachers: Teacher[] = [
+	{
+		name: "Pablo",
+		course: "Anatomy",
+		bio: "Pablo is a biologist", 
+		img: ""
+	},
+	{
+		name: "Juan", 
+		course: "Vaccination 101",
+		bio: "Juan is a physician", 
+		img: ""
+	},
+	{
+		name: "Katherine",
+		course: "Bone structures 101",
+		bio: "Katherine is a chiropractor", 
+		img: ""
+	},];
 
 const carouselItems: ItemObject[] = [
 	{
@@ -105,6 +127,19 @@ function WelcomePage() {
 						carouselItems.map((item, i) => <CarouselItem key={i} itemObject={item} />)
 					}
 				</Carousel>
+			</div>
+			<Divider orientation='horizontal' variant='middle' />
+			<div>
+				{/*Teachers/Instructors*/}
+				<Grid spacing={2} container direction='row' justifySelf='center' justifyContent='center' alignItems='center'>
+					{teachers.map((teacher) => {
+						return <>
+							<Grid item>
+								<TeacherCard teacher={teacher} />
+							</Grid>
+						</>
+					})}
+				</Grid>
 			</div>
 			<Divider orientation='horizontal' variant='middle' />
 			<div>
