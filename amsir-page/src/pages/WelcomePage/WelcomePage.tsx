@@ -3,10 +3,13 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
 
 import InstagramIcon from '@mui/icons-material/Instagram';
 
 import Carousel from 'react-material-ui-carousel';
+import CarouselItem from '../../components/MUICarousel/CarouselItem';
+import ItemObject from '../../components/MUICarousel/ItemObject';
 
 import logoIEEE from './../../static/logo-ieee-white.svg';
 import logoSurvivalMed from './../../static/survival-med-logo.png';
@@ -15,11 +18,10 @@ import sample1 from './../../static/sample-1.jpg';
 import sample2 from './../../static/sample-2.jpg';
 import sample3 from './../../static/sample-3.jpg';
 
-import ItemObject from '../../components/MUICarousel/ItemObject';
-import CarouselItem from '../../components/MUICarousel/CarouselItem';
 import UserReviewItem from '../../components/UserReviewCard/UserReviewItem';
-import Box from '@mui/material/Box';
 import UserReviewCard from '../../components/UserReviewCard/UserReviewCard';
+import TeacherCard from './../../components/TeacherCard/TeacherCard';
+import Teacher from '../../components/TeacherCard/Teacher';
 
 class Ally {
 	name: string;
@@ -53,6 +55,26 @@ const userReviews: UserReviewItem[] = [
 		note: "I did not like the syllabus",
 	},
 ];
+
+const teachers: Teacher[] = [
+	{
+		name: "Pablo",
+		course: "Anatomy",
+		bio: "Pablo is a biologist", 
+		img: ""
+	},
+	{
+		name: "Juan", 
+		course: "Vaccination 101",
+		bio: "Juan is a physician", 
+		img: ""
+	},
+	{
+		name: "Katherine",
+		course: "Bone structures 101",
+		bio: "Katherine is a chiropractor", 
+		img: ""
+	},];
 
 const carouselItems: ItemObject[] = [
 	{
@@ -121,6 +143,19 @@ function WelcomePage() {
 						carouselItems.map((item, i) => <CarouselItem key={i} itemObject={item} />)
 					}
 				</Carousel>
+			</div>
+			<Divider orientation='horizontal' variant='middle' />
+			<div>
+				{/*Teachers/Instructors*/}
+				<Grid spacing={2} container direction='row' justifySelf='center' justifyContent='center' alignItems='center'>
+					{teachers.map((teacher) => {
+						return <>
+							<Grid item>
+								<TeacherCard teacher={teacher} />
+							</Grid>
+						</>
+					})}
+				</Grid>
 			</div>
 			<Divider orientation='horizontal' variant='middle' />
 			<div>
