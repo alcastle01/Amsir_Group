@@ -7,6 +7,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import VideoPlayerPage from './pages/WelcomePage/VideoPlayerPage';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<WelcomePage />} />
+          <Route path='/demo' element={<VideoPlayerPage />} />
         </Routes>
       </BrowserRouter>
     </div>

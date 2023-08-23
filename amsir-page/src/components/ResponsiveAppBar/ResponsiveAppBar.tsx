@@ -14,22 +14,23 @@ import MenuItem from '@mui/material/MenuItem';
 import './ResponsiveAppBar.css';
 import amsirLogo from './../../static/amsirLogoNoBg.png';
 
-const pages = ['Welcome', 'Demo', 'About us'];
+const pages = [
+  {
+    text: 'Welcome',
+    link: '/',
+  },
+  {
+    text: 'Demo',
+    link: '/demo',
+  },
+]
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
@@ -40,7 +41,6 @@ function ResponsiveAppBar() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/*<AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />*/}
           <img src={amsirLogo} alt='amsir logo' />
           <Typography
             variant="h6"
@@ -63,11 +63,11 @@ function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={page.text}
                 sx={{ my: 2, color: 'white', display: 'block' }}
+                href={page.link}
               >
-                {page}
+                {page.text}
               </Button>
             ))}
           </Box>
