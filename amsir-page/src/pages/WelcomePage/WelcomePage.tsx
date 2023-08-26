@@ -22,7 +22,6 @@ import UserReviewItem from '../../components/UserReviewCard/UserReviewItem';
 import UserReviewCard from '../../components/UserReviewCard/UserReviewCard';
 import TeacherCard from './../../components/TeacherCard/TeacherCard';
 import Teacher from '../../components/TeacherCard/Teacher';
-
 class Ally {
 	name: string;
 	logoImg: any;
@@ -95,11 +94,8 @@ const carouselItems: ItemObject[] = [
 ];
 
 function WelcomePage() {
-
 	return (
 		<div>
-			<br />
-			<br />
 			<br />
 			<div>
 		  		{/*Que es AMSIR*/}
@@ -150,6 +146,10 @@ function WelcomePage() {
 			<Divider orientation='horizontal' variant='middle' />
 			<div>
 				{/*Instructores*/}
+				<br />
+				<Typography variant='h4' sx={{ color: '#A084DC' }}>
+					Nuestros Instructores
+				</Typography>
 				<br />
 				<Grid spacing={2} container direction='row' justifySelf='center' justifyContent='center' alignItems='center'>
 					{teachers.map((teacher) => {
