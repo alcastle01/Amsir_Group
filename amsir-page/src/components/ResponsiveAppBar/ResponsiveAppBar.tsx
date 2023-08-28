@@ -16,7 +16,7 @@ import amsirLogo from './../../static/amsirLogoNoBg.png';
 
 const pages = [
   {
-    text: 'Welcome',
+    text: 'Bienvenida',
     link: '/',
   },
   {
