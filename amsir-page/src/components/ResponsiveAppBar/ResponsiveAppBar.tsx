@@ -23,6 +23,14 @@ const pages = [
     text: 'Demo',
     link: '/demo',
   },
+  {
+    text: 'Registrate',
+    link: '/signup',
+  },
+  {
+    text: 'Inicia sesion',
+    link: '/signup',
+  },
 ]
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
