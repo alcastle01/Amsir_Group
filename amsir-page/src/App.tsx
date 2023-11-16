@@ -19,7 +19,7 @@ function App() {
           <Route path='/' element={<WelcomePage />} />
           <Route path='/demo' element={<VideoPlayerPage />} />
           <Route path='/signup' element={<UserSignUp />} />
-          <Route path='/login' element={<Login />} />/>
+          <Route path='/login' element={<Login />} />
         </Routes>
       </BrowserRouter>
     </div>

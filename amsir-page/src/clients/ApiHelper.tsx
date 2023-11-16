@@ -1,8 +1,9 @@
+import LoginInfo from "./LoginInfo";
 import User from "./User.d";
 
 const BASE_URL = 'http://localhost:8080';
 
-let getUsers = async function() {
+const getUsers = async function() {
 	const usersEndpoint = '/api/user';
 	const url = `${BASE_URL}${usersEndpoint}`;
 	await fetch(url)
@@ -15,7 +16,7 @@ let getUsers = async function() {
 	});
 };
 
-let userLogin = async function(loginInfo: LoginInfo) {
+const userLogin = async function(loginInfo: LoginInfo) {
 	const loginEndpoint = '/api/login';
 	const url = `${BASE_URL}${loginEndpoint}`;
 	const response = await fetch(url,
@@ -30,10 +31,10 @@ let userLogin = async function(loginInfo: LoginInfo) {
 	return await response.json();
 }
 
-let createUser = function(user: User) {
+const createUser = async function(user: User) {
 	const createUserEndpoint = '/api/user/signup';
 	const url = `${BASE_URL}${createUserEndpoint}`;
-	fetch(url, 
+	const response = fetch(url, 
 		{ 
 			method: 'POST', 
 			body: JSON.stringify(user), 
@@ -43,9 +44,11 @@ let createUser = function(user: User) {
 		if (!response.ok) {
 			console.log(response);
 			alert("Error al invocar createUser [ApiHelper]");
+			return response;
 		}
 		return response;
 	});
+	return await response;
 }
 
 export { getUsers, userLogin, createUser };
