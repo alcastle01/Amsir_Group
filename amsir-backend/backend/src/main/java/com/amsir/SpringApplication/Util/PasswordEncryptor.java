@@ -1,5 +1,6 @@
 package com.amsir.SpringApplication.Util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -14,8 +15,10 @@ import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.Base64;
 
+@Slf4j
 @Component
 public class PasswordEncryptor {
 
@@ -23,15 +26,17 @@ public class PasswordEncryptor {
     private String encryptionKey;
     @Value("${crypto.bytes.value}")
     private String bytesString;
-    public String encryptPassword(final String passwordText) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, UnsupportedEncodingException {
+    public String encryptPassword(final String passwordText) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, UnsupportedEncodingException {
         // create resources for AES encryption (secret + salt)
         SecretKeySpec secretKeySpec = new SecretKeySpec(encryptionKey.getBytes(StandardCharsets.UTF_8), "AES");
-        IvParameterSpec iv = new IvParameterSpec(bytesString.getBytes(StandardCharsets.UTF_8));
-        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
-        cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, iv);
-        // create encryption for password's bytes
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
         byte[] encrypted = cipher.doFinal(passwordText.getBytes());
-        // encode in BASE 64
-        return Base64.getEncoder().encodeToString(encrypted);
+        log.info("Password encryptor attempted an encryption from -> " + passwordText + " to -> " + Arrays.toString(encrypted));
+        // Base64 encoded
+        String base64String = Base64.getEncoder().encodeToString(encrypted);
+        log.info("Base 64 encoding -> " + base64String);
+        log.info("To be used in JS -> " + Base64.getEncoder().encodeToString(encryptionKey.getBytes()));
+        return base64String;
     }
 }
