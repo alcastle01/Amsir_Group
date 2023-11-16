@@ -27,8 +27,6 @@ public class AuthenticationManager implements AuthenticationProvider {
         String usernameOrEmail = authentication.getName();
         String password = authentication.getCredentials().toString();
 
-        UsernamePasswordAuthenticationToken authToken;
-
         if (usernameOrEmail.equals("admin") && password.equals("admin")) {
             return new UsernamePasswordAuthenticationToken(usernameOrEmail, password, null);
         }
@@ -45,13 +43,19 @@ public class AuthenticationManager implements AuthenticationProvider {
             if (passwordMatch(user, password)) return new UsernamePasswordAuthenticationToken(usernameOrEmail, password, null);
         }
 
+        // todo: create custom runtime exception to handle not found users
         return null;
     }
 
     private boolean passwordMatch(final User user, final String password) {
+        /***
+         * todo:
+         *
+         * here the idea is to receive the password already encrypted by the frontend,
+         * so at no steps we're managing the plain text.
+         */
         try {
-            String encryptedPassword = passwordEncryptor.encryptPassword(password);
-            if(encryptedPassword.equals(user.getPassword())){
+            if(password.equals(user.getPassword())){
                 log.debug("Password match! -> " + user.getUsername());
                 return true;
             }

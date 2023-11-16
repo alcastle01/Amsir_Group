@@ -1,21 +1,15 @@
 package com.amsir.SpringApplication.Controller;
 
-import com.amsir.SpringApplication.Dto.LoginRequestDto;
 import com.amsir.SpringApplication.Dto.UserDto;
 import com.amsir.SpringApplication.Entities.User;
 import com.amsir.SpringApplication.Services.UserService;
-import com.amsir.SpringApplication.Util.AuthenticationManager;
-import com.amsir.SpringApplication.Util.JwtAuthenticationResponse;
-import com.amsir.SpringApplication.Util.JwtTokenProvider;
-import com.amsir.SpringApplication.Util.PasswordEncryptor;
+import com.amsir.SpringApplication.Services.UserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,23 +27,14 @@ import java.util.Objects;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api")
+@RequestMapping("/api/user")
 @Slf4j
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private final UserService userService = new UserServiceImpl();
 
-    @Autowired
-    private AuthenticationManager authManager;
-
-    @Autowired
-    private JwtTokenProvider jwtTokenProvider;
-
-    @Autowired
-    private PasswordEncryptor passwordEncryptor;
-
-    @GetMapping("/user")
+    @GetMapping
     public ResponseEntity<List<User>> getAllUsers() {
         try {
             List<User> users = this.userService.getAllUsers();
@@ -62,7 +47,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<User> getUser(@PathVariable("id") final String id) {
         try {
             User user = this.userService.getUserById(Integer.valueOf(id));
@@ -75,40 +60,17 @@ public class UserController {
         }
     }
 
-    @GetMapping("/login")
-    public ResponseEntity<?> authenticateUser(@RequestBody LoginRequestDto loginRequest) {
-        Authentication authentication = authManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.usernameOrEmail, loginRequest.password));
 
-        String jwt = jwtTokenProvider.generateToken(authentication, userService);
-
-        if (jwt.isEmpty()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-
-        return new ResponseEntity<>(new JwtAuthenticationResponse(jwt), HttpStatus.OK);
-    }
-
-    @PostMapping("/logout")
-    public ResponseEntity<?> logout() {
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 
     @PostMapping(value = "/signup", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> createUser(@RequestBody UserDto userDto) {
-        // validations
-        if (userDto.username.isEmpty()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        if (userDto.email.isEmpty()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        if (userDto.password.isEmpty()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        //todo: apply validations
 
-        // hash pwd
+        //todo: handle error output for an already existing user
+
         try {
-            userDto.password = passwordEncryptor.encryptPassword(userDto.password);
-            // create Models (Entities)
             User user = new User(userDto);
-
-            // store in DB
             this.userService.createUser(user);
-
-            // return response to client
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (DataIntegrityViolationException e) {
             log.warn(e.getCause().getMessage());
@@ -119,28 +81,14 @@ public class UserController {
         }
     }
 
-    @PostMapping("/user/{id}")
+    @PostMapping("/{id}")
     public ResponseEntity<Void> updateUser(@PathVariable("id") final Integer id, @RequestBody UserDto userDto) {
         try {
             User storedUser = userService.getUserById(id);
 
             if (Objects.isNull(storedUser)) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
-            Map<String, String> changes = new HashMap<>();
-
-            if (!storedUser.getUsername().equals(userDto.getUsername())
-                    && !userDto.getUsername().isEmpty()) {
-                changes.put("username", userDto.getUsername());
-            }
-            if (!storedUser.getEmail().equals(userDto.getEmail())
-                    && !userDto.getEmail().isEmpty()) {
-                changes.put("email", userDto.getEmail());
-            }
-            if (!storedUser.getPassword().equals(userDto.getPassword())
-                    && !Objects.isNull(userDto.getPassword())
-                    && !userDto.getPassword().isEmpty()) {
-                changes.put("password", userDto.getPassword());
-            }
+            Map<String, String> changes = findModelDifferenceWith(userDto, storedUser);
 
             if (!changes.isEmpty()) {
                 userService.updateUser(changes, id);
@@ -148,12 +96,12 @@ public class UserController {
 
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
-            log.error("Exception thrown while updating user -> " + e.toString());
+            log.error("Exception thrown while updating user -> " + e);
         }
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @DeleteMapping("/user/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable("id") final Integer id) {
         try {
             this.userService.deleteUser(id);
@@ -161,5 +109,24 @@ public class UserController {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    private static Map<String, String> findModelDifferenceWith(UserDto newUser, User previouslyStoredUser) {
+        Map<String, String> changes = new HashMap<>();
+
+        if (!previouslyStoredUser.getUsername().equals(newUser.getUsername())
+                && !newUser.getUsername().isEmpty()) {
+            changes.put("username", newUser.getUsername());
+        }
+        if (!previouslyStoredUser.getEmail().equals(newUser.getEmail())
+                && !newUser.getEmail().isEmpty()) {
+            changes.put("email", newUser.getEmail());
+        }
+        if (!previouslyStoredUser.getPassword().equals(newUser.getPassword())
+                && !Objects.isNull(newUser.getPassword())
+                && !newUser.getPassword().isEmpty()) {
+            changes.put("password", newUser.getPassword());
+        }
+        return changes;
     }
 }
