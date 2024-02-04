@@ -1,4 +1,4 @@
-import VideoPlayer from './../../components/VideoPlayer/VideoPlayer';
+import VideoPlayer from '../../components/VideoPlayer/VideoPlayer';
 import VideoInterface from '../../components/VideoPlayer/VideoMetadata';
 import { Container, Box, Divider, Grid, Paper, Stack, Typography, Button } from '@mui/material';
 
