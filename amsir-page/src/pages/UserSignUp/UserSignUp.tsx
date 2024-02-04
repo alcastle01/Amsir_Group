@@ -1,15 +1,14 @@
 import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import User from "../../clients/User.d";
 import { createUser } from "../../clients/ApiHelper";
 import { encrypt } from "../../util/CriptoHelper";
-import InputLabel from "@mui/material/InputLabel";
 import React from "react";
 import { Modal } from "@mui/base";
 import { Box } from "@mui/system";
-import { Paper } from "@mui/material";
+import { FormControl, Grid, Paper } from "@mui/material";
+import './UserSignUp.css';
 
 function UserSignUp() {
 	const [open, setOpen] = React.useState(false);
@@ -39,11 +38,11 @@ function UserSignUp() {
 
 	return(
 		<>
-			<Typography variant="h1">
-				Bienvenidos!
+			<Typography variant="h2" color="#A084DC">
+					Bienvenid@!
 			</Typography>
 
-			<Typography variant="body1">
+			<Typography variant="h5">
 				Gracias por creer en AMSIR!
 			</Typography>
 			{open &&
@@ -73,41 +72,56 @@ function UserSignUp() {
 			}
 
 			{!open && 
-				<Stack spacing={2} direction='column'>
-					<form>
-						<InputLabel>
-							Como te llamamos?
-						</InputLabel>
-						<br />
-						<TextField id='username' required />
-						<br />
-						<InputLabel>
-							Cual es tu email?
-						</InputLabel>
-						<br />
+				<Box alignContent='center' justifyContent='center'>
+					<Grid container sx={{
+						marginTop: "3%",
+						alignContent: "center"
+					}} spacing={2} direction='column'>
+						<form>
+							<Grid item xs={12}>
+								<FormControl sx={{
+									border: "1px solid",
+									padding: "15px",
+								}}>
+									<Typography variant="body1">
+										Como te llamamos?
+									</Typography>
+									<br />
+									<br />
+									<TextField variant='standard' id='username' label='Nombre de usuario' required />
+									<br />
+									<br />
+									<Typography variant="body1">
+										Cual es tu email?
+									</Typography>
+									<br />
+									<br />
+									<TextField variant='standard' id='email' label='Email' required />
+									<br />
+									<br />
+									<Typography variant="body1">
+										Asigna tu nueva contrasena:
+									</Typography>
+									<br />
+									<TextField type="password" variant='standard' id='password' label='Password' required autoComplete="off" />
+									<br />
+									<br />
 
-						<TextField id='email' required />
-						<br />
-
-						<InputLabel>
-							Dame tu contrasena?
-						</InputLabel>
-						<br />
-
-						<TextField id='password' required autoComplete="off" security="" />
-						<br />
-						<br />
-
-						<Button variant="contained" onClick={() => {
-								attemptCreateUser(
-									document.getElementById('username'), 
-									document.getElementById('email'), 
-									document.getElementById('password')) 
-							}}>
-							Crear usuario!
-						</Button>
-					</form>
-				</Stack>
+									<Button sx={{
+										margin:  '10%'
+									}} variant="contained" onClick={() => {
+											attemptCreateUser(
+												document.getElementById('username'), 
+												document.getElementById('email'), 
+												document.getElementById('password')) 
+										}}>
+										Crear usuario!
+									</Button>
+								</FormControl>
+							</Grid>
+						</form>
+					</Grid>
+				</Box>
 			}
 		</>
 	);

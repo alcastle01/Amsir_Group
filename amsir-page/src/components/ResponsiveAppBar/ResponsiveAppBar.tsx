@@ -29,7 +29,7 @@ const pages = [
   },
   {
     text: 'Inicia sesion',
-    link: '/signup',
+    link: '/login',
   },
 ]
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];

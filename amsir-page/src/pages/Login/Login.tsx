@@ -1,12 +1,11 @@
 import Button from "@mui/material/Button";
-import InputLabel from "@mui/material/InputLabel";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import { userLogin } from "../../clients/ApiHelper";
 import { encrypt } from "../../util/CriptoHelper";
 import LoginInfo from "../../clients/LoginInfo";
 import TokenData from "../../clients/TokenData";
-import { Box, Typography } from "@mui/material";
+import { Box, FormControl, Typography } from "@mui/material";
 
 function Login() {
 	function attemptLogin(username: HTMLElement | String | any , password: HTMLElement | String | any) {
@@ -44,29 +43,36 @@ function Login() {
 			<br />
 			<Stack spacing={2} direction='column'>
 				<form>
-					<InputLabel>
-						Como te llamamos?
-					</InputLabel>
-					<br />
-					<TextField id='username' required />
-					<br />
+					<FormControl sx={{
+						border: "1px solid",
+						padding: "15px",
+					}}>
+						<Typography variant="body1">
+							Como te llamamos?
+						</Typography>
+						<br />
+						<TextField variant='standard' id='username' label='Nombre de usuario' required />
+						<br />
 
-					<InputLabel>
-						Dame tu contrasena?
-					</InputLabel>
-					<br />
+						<Typography variant="body1">
+							Cual es tu contrasena?
+						</Typography>
+						<br />
 
-					<TextField id='password' required autoComplete="off" security="" />
-					<br />
-					<br />
+						<TextField type="password" variant='standard' id='password' label='Password' required autoComplete="off" />
+						<br />
+						<br />
 
-					<Button variant="contained" onClick={() => {
-							attemptLogin(
-								document.getElementById('username'),
-								document.getElementById('password')) 
-						}}>
-						Login
-					</Button>
+						<Button sx={{
+							margin:  '10%'
+						}} variant="contained" onClick={() => {
+								attemptLogin(
+									document.getElementById('username'),
+									document.getElementById('password')) 
+							}}>
+							Login
+						</Button>
+					</FormControl>
 				</form>
 			</Stack>
 		</>
