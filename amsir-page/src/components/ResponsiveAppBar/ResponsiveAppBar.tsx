@@ -13,7 +13,9 @@ import MenuItem from '@mui/material/MenuItem';
 
 import './ResponsiveAppBar.css';
 import amsirLogo from './../../static/amsirLogoNoBg.png';
+import { cookieExists } from '../../util/CookieHelper';
 
+// todo: dynamically change pages based on the [authCookieFound] flag state
 const pages = [
   {
     text: 'Bienvenida',
@@ -24,10 +26,6 @@ const pages = [
     link: '/demo',
   },
   {
-    text: 'Registrate',
-    link: '/signup',
-  },
-  {
     text: 'Inicia sesion',
     link: '/login',
   },
@@ -36,6 +34,7 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const [authCookieFound, setAuthCookieFound] = React.useState<boolean>(false);
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -44,6 +43,10 @@ function ResponsiveAppBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  React.useEffect(() => {
+    setAuthCookieFound(cookieExists("tokenSet"));
+  }, []);
 
   return (
     <AppBar position="static">
@@ -80,7 +83,9 @@ function ResponsiveAppBar() {
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
+
+          { authCookieFound && 
+            <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
@@ -109,6 +114,17 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
+          }
+
+          { !authCookieFound && 
+            <Box sx={{ flexGrow: 0 }}>
+            <Button variant='text' href='/signup'>
+              <Typography color={'white'} variant='button'>
+                Registro
+              </Typography>
+            </Button>
+          </Box>
+          }
         </Toolbar>
       </Container>
     </AppBar>
