@@ -28,7 +28,10 @@ const userLogin = async function(loginInfo: LoginInfo) {
 			}),
 			headers: { 'Content-Type': 'application/json' }
 		});
-	return await response.json();
+	if (response.ok) {
+		return response.json();
+	}
+	return response;
 }
 
 const createUser = async function(user: User) {
