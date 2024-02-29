@@ -123,6 +123,16 @@ function UserSignUp() {
 					</Grid>
 				</Box>
 			}
+
+			<Box>
+				<Typography variant="caption">
+					Buscando el 
+					<Button variant='text' href='/login'>
+						Login
+					</Button>
+					?
+				</Typography>
+			</Box>
 		</>
 	);
 }
