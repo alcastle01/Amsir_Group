@@ -13,8 +13,9 @@ import MenuItem from '@mui/material/MenuItem';
 
 import './ResponsiveAppBar.css';
 import amsirLogo from './../../static/amsirLogoNoBg.png';
+import { isUserSessionValid } from '../../clients/ApiHelper';
 
-const pages = [
+const publicPages = [
   {
     text: 'Bienvenida',
     link: '/',
@@ -23,11 +24,32 @@ const pages = [
     text: 'Demo',
     link: '/demo',
   },
+  {
+    text: 'Inicia sesion',
+    link: '/login',
+  },
 ]
+
+const userPages = [
+  {
+    text: 'Bienvenida',
+    link: '/',
+  },
+  {
+    text: 'Demo',
+    link: '/demo',
+  },
+  {
+    text: 'Mis Cursos',
+    link: '/demo',
+  },
+]
+
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const [sessionFound, setSessionFound] = React.useState<boolean>(false);
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -36,6 +58,12 @@ function ResponsiveAppBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  React.useEffect(() => {
+    setSessionFound(isUserSessionValid());
+  }, []);
+
+  const pages = sessionFound? userPages: publicPages;
 
   return (
     <AppBar position="static">
@@ -72,7 +100,9 @@ function ResponsiveAppBar() {
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
+
+          { sessionFound && 
+            <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
@@ -101,6 +131,17 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
+          }
+
+          { !sessionFound && 
+            <Box sx={{ flexGrow: 0 }}>
+            <Button variant='text' href='/signup'>
+              <Typography color={'white'} variant='button'>
+                Registro
+              </Typography>
+            </Button>
+          </Box>
+          }
         </Toolbar>
       </Container>
     </AppBar>
