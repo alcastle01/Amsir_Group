@@ -13,10 +13,9 @@ import MenuItem from '@mui/material/MenuItem';
 
 import './ResponsiveAppBar.css';
 import amsirLogo from './../../static/amsirLogoNoBg.png';
-import { cookieExists } from '../../util/CookieHelper';
+import { isUserSessionValid } from '../../clients/ApiHelper';
 
-// todo: dynamically change pages based on the [authCookieFound] flag state
-const pages = [
+const publicPages = [
   {
     text: 'Bienvenida',
     link: '/',
@@ -30,11 +29,27 @@ const pages = [
     link: '/login',
   },
 ]
+
+const userPages = [
+  {
+    text: 'Bienvenida',
+    link: '/',
+  },
+  {
+    text: 'Demo',
+    link: '/demo',
+  },
+  {
+    text: 'Mis Cursos',
+    link: '/demo',
+  },
+]
+
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-  const [authCookieFound, setAuthCookieFound] = React.useState<boolean>(false);
+  const [sessionFound, setSessionFound] = React.useState<boolean>(false);
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -45,8 +60,10 @@ function ResponsiveAppBar() {
   };
 
   React.useEffect(() => {
-    setAuthCookieFound(cookieExists("tokenSet"));
+    setSessionFound(isUserSessionValid());
   }, []);
+
+  const pages = sessionFound? userPages: publicPages;
 
   return (
     <AppBar position="static">
@@ -84,7 +101,7 @@ function ResponsiveAppBar() {
           </Box>
 
 
-          { authCookieFound && 
+          { sessionFound && 
             <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -116,7 +133,7 @@ function ResponsiveAppBar() {
           </Box>
           }
 
-          { !authCookieFound && 
+          { !sessionFound && 
             <Box sx={{ flexGrow: 0 }}>
             <Button variant='text' href='/signup'>
               <Typography color={'white'} variant='button'>

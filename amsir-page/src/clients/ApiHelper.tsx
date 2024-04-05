@@ -1,3 +1,4 @@
+import { COOKIE_TOKEN, COOKIE_TOKEN_SET, cookieExists, deleteCookie } from "../util/CookieHelper";
 import LoginInfo from "./LoginInfo";
 import User from "./User.d";
 
@@ -54,4 +55,18 @@ const createUser = async function(user: User) {
 	return await response;
 }
 
-export { getUsers, userLogin, createUser };
+const userLogout = function() {
+	deleteCookie(COOKIE_TOKEN_SET);
+}
+
+// todo: finish implementation
+const isUserSessionValid = function() {
+	if (cookieExists(COOKIE_TOKEN) && cookieExists(COOKIE_TOKEN_SET)) {
+		// todo: check if dates are valid
+		return true;
+	}
+
+	return false;
+}
+
+export { getUsers, userLogin, createUser, userLogout, isUserSessionValid };

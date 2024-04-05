@@ -3,7 +3,7 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import { userLogin } from "../../clients/ApiHelper";
 import { encrypt } from "../../util/CriptoHelper";
-import { setCookie } from "../../util/CookieHelper";
+import { COOKIE_TOKEN_SET, COOKIE_TOKEN, setCookie } from "../../util/CookieHelper";
 import LoginInfo from "../../clients/LoginInfo";
 import TokenData from "../../clients/TokenData";
 import { Box, FormControl, Modal, Paper, Typography } from "@mui/material";
@@ -35,8 +35,9 @@ function Login() {
 						tokenType: result.tokenType,
 						accessToken: result.accessToken,
 					}
-					setCookie("token", tokenData.accessToken, true);
-					setCookie("tokenSet", "true");
+					// todo: cookie should be sent by the backend in the headers
+					setCookie(COOKIE_TOKEN, tokenData.accessToken, true);
+					setCookie(COOKIE_TOKEN_SET, "true");
 					setOpenSuccess(true);
 				}
 				return result;
